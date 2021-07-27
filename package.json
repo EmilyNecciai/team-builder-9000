@@ -1,0 +1,24 @@
+{
+  "name": "team-builder-9000",
+  "version": "1.0.0",
+  "description": "Module 10 Challenge - an employee logging system that executes from the command line.",
+  "main": "index.js",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilyNecciai/team-builder-9000.git"
+  },
+  "author": "Emily Mayeski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmilyNecciai/team-builder-9000/issues"
+  },
+  "homepage": "https://github.com/EmilyNecciai/team-builder-9000#readme"
+}
