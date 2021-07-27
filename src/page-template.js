@@ -1,27 +1,28 @@
 // EMPLOYEE CLASS HERE
 const generateEmployeeCard = empCard => {
     if (!empCard) {
-      return `
-      Oops! Something must be wrong. Try filling out the application again. 
-      `;
+      return "";
     }
   
     return `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${EMPLOYEENAME}</h5>
+                <h5 class="card-title">EMPLOYEENAME</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${genTitle()}</h6>
+
             </div>
 
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">${EMPLOYEEID}</li>
-                <li class="list-group-item">${EMPLOYEEEMAIL}</li>
-                <li class="list-group-item">${genExtraInfo()}</li>
-            </ul>
 
         </div>
       `;
   };
+// PUT BACK IN LINE 16
+//   <ul class="list-group list-group-flush">
+//   <li class="list-group-item">${EMPLOYEEID}</li>
+//   <li class="list-group-item">${EMPLOYEEEMAIL}</li>
+//   <li class="list-group-item">${genExtraInfo()}</li>
+// </ul>
+
 
 // SUB FUNCTIONS  
 // EMPLOYEE TITLE AND ICON
@@ -44,30 +45,30 @@ const genTitle = empTitle => {
     };
 
 
-// EMPLOYEE EXTRA INFO
-const genExtraInfo = extraInfo => {
-// TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
-// TO DO: PASS IN EMPLOYEE BONUS INFO FROM INQUIRER
+// // EMPLOYEE EXTRA INFO
+// const genExtraInfo = extraInfo => {
+// // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
+// // TO DO: PASS IN EMPLOYEE BONUS INFO FROM INQUIRER
 
-    if (empTitle === "Manager") {
-      return `
-      Office Number: ${managerOfficeNumber} 
-      `;
-    } else if (empTitle === "Engineer") {
-        return `
-        Github: <a href="https://www.github.com/${engGithubName}" class="card-link">${engGithubName}</a> 
-        `;
-      } else if (empTitle === "Intern") {
-        return `
-        School: ${internSchoolName} 
-        `;
-      }
-};
+//     if (empTitle === "Manager") {
+//       return `
+//       Office Number: ${managerOfficeNumber} 
+//       `;
+//     } else if (empTitle === "Engineer") {
+//         return `
+//         Github: <a href="https://www.github.com/${engGithubName}" class="card-link">${engGithubName}</a> 
+//         `;
+//       } else if (empTitle === "Intern") {
+//         return `
+//         School: ${internSchoolName} 
+//         `;
+//       }
+// };
 
 // export function to generate entire page
-module.exports = templateData => {
+module.exports = teamData => {
     // destructure page data by section
-    // const { projects, about, ...header } = templateData;
+    const { team, ...profiles } = teamData;
   
     return `
     <!DOCTYPE html>
@@ -89,14 +90,14 @@ module.exports = templateData => {
         <nav class="navbar sticky-top navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <h1 class="page-title text-secondary bg-dark py-2 px-3">${TEAMNAME}</h1>
+                    <h1 class="page-title text-secondary bg-dark py-2 px-3">${team}</h1>
                 </a>
             </div>
         </nav>
       </header>
 
       <main class="container">
-      ${generateEmployeeCard()}
+      ${generateEmployeeCard(profiles)}
       </main>
 
 
