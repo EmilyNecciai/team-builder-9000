@@ -135,7 +135,7 @@ function addOrFinish(team) {
         }
     }
     })
-}
+};
 
 
 promptUser();

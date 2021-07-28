@@ -1,49 +1,22 @@
-// EMPLOYEE CLASS HERE
-
-function generateEmployeeCard(empCardInfo) {
-  const { empName, empEmail, empId, empOffice, role } = empCardInfo;
-
-    if (!empCardInfo) {
-      return "";
-    } else {    
-      empCardInfo.forEach(empInfo => {
-      return `
-      <div class="card" style="width: 18rem;">
-          <div class="card-body">
-              <h5 class="card-title">EMPLOYEENAME</h5>
-              <h6 class="card-subtitle mb-2 text-muted">${genTitle(role)}</h6>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: ${empInfo.empId}</li>
-            <li class="list-group-item">Email: </li>
-            <li class="list-group-item">$ {genExtraInfo()}</li>
-          </ul>
-      </div>
-      `
-    }
-    );
-  }
-};
-
 // // SUB FUNCTIONS  
 // // EMPLOYEE TITLE AND ICON
-const genTitle = empTitle => {
-    // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
+// const genTitle = empTitle => {
+//     // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
   
-        if (empTitle === "Manager") {
-          return `
-          <i class="fas fa-mug-hot">Manager</i> 
-          `;
-        } else if (empTitle === "Engineer") {
-                return `
-                <i class="fas fa-hammer">Engineer</i> 
-                `;
-        } else if (empTitle === "Intern") {
-            return `
-            <i class="fas fa-school">Intern</i> 
-            `;
-        }
-    };
+//         if (empTitle === "Manager") {
+//           return `
+//           <i class="fas fa-mug-hot">Manager</i> 
+//           `;
+//         } else if (empTitle === "Engineer") {
+//                 return `
+//                 <i class="fas fa-hammer">Engineer</i> 
+//                 `;
+//         } else if (empTitle === "Intern") {
+//             return `
+//             <i class="fas fa-school">Intern</i> 
+//             `;
+//         }
+//     };
 
 
 // // // EMPLOYEE EXTRA INFO
@@ -66,10 +39,41 @@ const genTitle = empTitle => {
 //       }
 // };
 
+// EMPLOYEE CLASS HERE
+
+// function generateEmployeeCard(empCardInfo) {
+//   // const { name, id, email, role, ...extra } = empCardInfo;
+//   // const { ...empCardInfo } = empCardInfo;
+
+
+//     if (!empCardInfo) {
+//       return "";
+//     } else {    
+//       empCardInfo.forEach(empInfo => {
+//       return `
+//       <div class="card" style="width: 18rem;">
+//           <div class="card-body">
+//               <h5 class="card-title">${name}</h5>
+//               <h6 class="card-subtitle mb-2 text-muted">$ {genTitle(role)}</h6>
+//           </div>
+//           <ul class="list-group list-group-flush">
+//             <li class="list-group-item">ID: ${id}</li>
+//             <li class="list-group-item">Email: ${email}</li>
+//             <li class="list-group-item">$ {genExtraInfo(extra)}</li>
+//           </ul>
+//       </div>
+//       `
+//     }
+//     );
+//   }
+// };
+
+
 // export function to generate entire page
-function generatePage(teamData) {
+function generatePage(data) {
     // destructure page data by section
-    const { profiles } = teamData;
+    // const { empName, empId, empEmail, ...extra } = data;
+
   
     return `
     <!DOCTYPE html>
@@ -97,7 +101,7 @@ function generatePage(teamData) {
       </header>
 
       <main class="container">
-      ${generateEmployeeCard(profiles)}
+      ${data.empName}
       </main>
 
       <footer class="container text-center py-3">
