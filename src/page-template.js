@@ -1,34 +1,35 @@
 // EMPLOYEE CLASS HERE
-const generateEmployeeCard = empCard => {
-    if (!empCard) {
+
+function generateEmployeeCard(empCardInfo) {
+  const { empName, empEmail, empId, empOffice, role } = empCardInfo;
+
+    if (!empCardInfo) {
       return "";
+    } else {    
+      empCardInfo.forEach(empInfo => {
+      return `
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+              <h5 class="card-title">EMPLOYEENAME</h5>
+              <h6 class="card-subtitle mb-2 text-muted">${genTitle(role)}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${empInfo.empId}</li>
+            <li class="list-group-item">Email: </li>
+            <li class="list-group-item">$ {genExtraInfo()}</li>
+          </ul>
+      </div>
+      `
     }
-  
-    return `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">EMPLOYEENAME</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${genTitle()}</h6>
+    );
+  }
+};
 
-            </div>
-
-
-        </div>
-      `;
-  };
-// PUT BACK IN LINE 16
-//   <ul class="list-group list-group-flush">
-//   <li class="list-group-item">${EMPLOYEEID}</li>
-//   <li class="list-group-item">${EMPLOYEEEMAIL}</li>
-//   <li class="list-group-item">${genExtraInfo()}</li>
-// </ul>
-
-
-// SUB FUNCTIONS  
-// EMPLOYEE TITLE AND ICON
+// // SUB FUNCTIONS  
+// // EMPLOYEE TITLE AND ICON
 const genTitle = empTitle => {
     // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
-    
+  
         if (empTitle === "Manager") {
           return `
           <i class="fas fa-mug-hot">Manager</i> 
@@ -45,7 +46,7 @@ const genTitle = empTitle => {
     };
 
 
-// // EMPLOYEE EXTRA INFO
+// // // EMPLOYEE EXTRA INFO
 // const genExtraInfo = extraInfo => {
 // // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
 // // TO DO: PASS IN EMPLOYEE BONUS INFO FROM INQUIRER
@@ -66,9 +67,9 @@ const genTitle = empTitle => {
 // };
 
 // export function to generate entire page
-module.exports = teamData => {
+function generatePage(teamData) {
     // destructure page data by section
-    const { team, ...profiles } = teamData;
+    const { profiles } = teamData;
   
     return `
     <!DOCTYPE html>
@@ -82,7 +83,6 @@ module.exports = teamData => {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
       <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="style.css">
     </head>
     
     <body>
@@ -90,7 +90,7 @@ module.exports = teamData => {
         <nav class="navbar sticky-top navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <h1 class="page-title text-secondary bg-dark py-2 px-3">${team}</h1>
+                    <h1 class="page-title text-secondary bg-dark py-2 px-3">Our Team</h1>
                 </a>
             </div>
         </nav>
@@ -99,8 +99,6 @@ module.exports = teamData => {
       <main class="container">
       ${generateEmployeeCard(profiles)}
       </main>
-
-
 
       <footer class="container text-center py-3">
         <h3 class="text-dark">&copy;2020 by Team Generator 9000</h3>
@@ -112,3 +110,5 @@ module.exports = teamData => {
     `;
   };
   
+
+  module.exports = generatePage;

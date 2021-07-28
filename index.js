@@ -1,10 +1,10 @@
 const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
-
+var fs = require('fs');
 const inquirer = require("inquirer");
-// const generatePage = require('./src/page-template');
-// const { writeFile, copyFile } = require('./utils/generate-site');
+const generatePage = require('./src/page-template');
+
 
 
 const team = [];
@@ -22,19 +22,16 @@ Add a New Employee
             type: "input",
             name: "name",
             message: "What is the employee's name?"
-
         },
         {
             type: "input",
             name: "id",
             message: "What is the employee's id? (Numbers Only)"
-
         },
         {
             type: "input",
             name: "email",
             message: "What is the employee's email address?"
-
         },
         {
             type: "list",
@@ -51,8 +48,6 @@ Add a New Employee
         } else if(answers.role === "Intern"){
             return internQuestions(answers);
         }
-
-
     })
 }
 
@@ -107,7 +102,16 @@ function internQuestions(employeeAnswers){
         console.log(team);
         addOrFinish(team);
     })
-}
+};
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) throw new Error(err);
+
+        console.log("Team file generated! In your browser, open index.html (in the dist folder) to see it!")
+    })
+};
+
 
 function addOrFinish(team) {
     inquirer
@@ -127,28 +131,12 @@ function addOrFinish(team) {
             // return generatePage(team);
             console.log("Your team:");
             console.log(team);
+            writeToFile("./dist/index.html", generatePage(team));
         }
     }
-    }) 
+    })
 }
 
 
 promptUser();
 
-    // .then(promptEmp)
-    // .then(empData => {
-    //     return generatePage(empData);
-    // })
-    // .then(pageHTML => {
-    //     return writeFile(pageHTML);
-    // })
-    // .then(writeFileResponse => {
-    //     console.log(writeFileResponse);
-    //     return copyFile();
-    // })
-    // .then(copyFileResponse => {
-    //     console.log(copyFileResponse);
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    // });
