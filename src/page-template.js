@@ -18,10 +18,7 @@ const genTitle = empTitle => {
         }
     };
 
-
 // // EMPLOYEE EXTRA INFO
-
-
 function genExtraInfo(empRole, empGithub, empOffice, empSchool) {
   if (empRole === "Manager") {
     return `
@@ -47,7 +44,7 @@ function generateEmployeeCard(data) {
 
       data.forEach(emp => {
         const individualEmp = `
-        <div class="card">
+        <div class="card" style="margin:2%">
             <div class="card-body">
                 <h5 class="card-title">
                   ${emp.empName}
@@ -71,7 +68,6 @@ function generateEmployeeCard(data) {
     return employeeData;
 }
 };
-
 
 // export function to generate entire page
 function generatePage(data) {
