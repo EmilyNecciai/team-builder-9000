@@ -26,7 +26,7 @@ function genExtraInfo(empRole, empGithub, empOffice, empSchool) {
     `;
   } else if (empRole === "Engineer") {
       return `
-      Github: <a href="https://www.github.com/${empGithub}" class="card-link">${empGithub}</a> 
+      Github: <a href="https://www.github.com/${empGithub}" target="_blank" class="card-link">${empGithub}</a> 
       `;
     } else if (empRole === "Intern") {
       return `
@@ -60,9 +60,9 @@ function generateEmployeeCard(data) {
             </div>
         </div>
         `;
-        console.log(individualEmp);
+        // console.log(individualEmp);
         employeeData += individualEmp; 
-        console.log(employeeData);
+        // console.log(employeeData);
 
       });
     return employeeData;
