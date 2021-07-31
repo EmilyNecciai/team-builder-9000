@@ -1,80 +1,80 @@
-// // SUB FUNCTIONS  
-// // EMPLOYEE TITLE AND ICON
-// const genTitle = empTitle => {
-//     // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
+// SUB FUNCTIONS  
+// EMPLOYEE TITLE AND ICON
+const genTitle = empTitle => {
+    // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
   
-//         if (empTitle === "Manager") {
-//           return `
-//           <i class="fas fa-mug-hot">Manager</i> 
-//           `;
-//         } else if (empTitle === "Engineer") {
-//                 return `
-//                 <i class="fas fa-hammer">Engineer</i> 
-//                 `;
-//         } else if (empTitle === "Intern") {
-//             return `
-//             <i class="fas fa-school">Intern</i> 
-//             `;
-//         }
-//     };
+        if (empTitle === "Manager") {
+          return `
+          <i class="fas fa-mug-hot">Manager</i> 
+          `;
+        } else if (empTitle === "Engineer") {
+                return `
+                <i class="fas fa-hammer">Engineer</i> 
+                `;
+        } else if (empTitle === "Intern") {
+            return `
+            <i class="fas fa-school">Intern</i> 
+            `;
+        }
+    };
 
 
-// // // EMPLOYEE EXTRA INFO
-// const genExtraInfo = extraInfo => {
-// // TO DO: PASS IN EMPLOYEE TITLE FROM INQUIRER
-// // TO DO: PASS IN EMPLOYEE BONUS INFO FROM INQUIRER
+// // EMPLOYEE EXTRA INFO
 
-//     if (empTitle === "Manager") {
-//       return `
-//       Office Number: ${managerOfficeNumber} 
-//       `;
-//     } else if (empTitle === "Engineer") {
-//         return `
-//         Github: <a href="https://www.github.com/${engGithubName}" class="card-link">${engGithubName}</a> 
-//         `;
-//       } else if (empTitle === "Intern") {
-//         return `
-//         School: ${internSchoolName} 
-//         `;
-//       }
-// };
+
+function genExtraInfo(empRole, empGithub, empOffice, empSchool) {
+  if (empRole === "Manager") {
+    return `
+    Office Number: ${empOffice} 
+    `;
+  } else if (empRole === "Engineer") {
+      return `
+      Github: <a href="https://www.github.com/${empGithub}" class="card-link">${empGithub}</a> 
+      `;
+    } else if (empRole === "Intern") {
+      return `
+      School: ${empSchool} 
+      `;
+    }
+};
 
 // EMPLOYEE CLASS HERE
+function generateEmployeeCard(data) {
+    if (!data) {
+      return "";
+    } else {
+      let employeeData = '';
 
-// function generateEmployeeCard(empCardInfo) {
-//   // const { name, id, email, role, ...extra } = empCardInfo;
-//   // const { ...empCardInfo } = empCardInfo;
+      data.forEach(emp => {
+        const individualEmp = `
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                  ${emp.empName}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  ${genTitle(emp.empRole)}
+                </h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">ID: ${emp.empId}</li>
+                  <li class="list-group-item">Email: <a href="mailto:${emp.empEmail}" class="card-link">${emp.empEmail}</a></li>
+                  <li class="list-group-item">${genExtraInfo(emp.empRole, emp.empGithub, emp.empOffice, emp.empSchool)}</li>
+                </ul>  
+            </div>
+        </div>
+        `;
+        console.log(individualEmp);
+        employeeData += individualEmp; 
+        console.log(employeeData);
 
-
-//     if (!empCardInfo) {
-//       return "";
-//     } else {    
-//       empCardInfo.forEach(empInfo => {
-//       return `
-//       <div class="card" style="width: 18rem;">
-//           <div class="card-body">
-//               <h5 class="card-title">${name}</h5>
-//               <h6 class="card-subtitle mb-2 text-muted">$ {genTitle(role)}</h6>
-//           </div>
-//           <ul class="list-group list-group-flush">
-//             <li class="list-group-item">ID: ${id}</li>
-//             <li class="list-group-item">Email: ${email}</li>
-//             <li class="list-group-item">$ {genExtraInfo(extra)}</li>
-//           </ul>
-//       </div>
-//       `
-//     }
-//     );
-//   }
-// };
+      });
+    return employeeData;
+}
+};
 
 
 // export function to generate entire page
 function generatePage(data) {
-    // destructure page data by section
-    // const { empName, empId, empEmail, ...extra } = data;
-
-  
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -89,23 +89,21 @@ function generatePage(data) {
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     
-    <body>
+    <body style="background-color: #171717;">
       <header>
-        <nav class="navbar sticky-top navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <h1 class="page-title text-secondary bg-dark py-2 px-3">Our Team</h1>
-                </a>
+        <nav class="navbar sticky-top navbar-light bg-dark">
+          <div class="container-fluid">
+                  <h1 class="page-title text-secondary bg-dark py-2 px-3">Our Team</h1>
             </div>
         </nav>
       </header>
 
-      <main class="container">
-      ${data.empName}
+      <main class="container" style="padding:2%; display:flex; flex-wrap: wrap; justify-content: center;">
+      ${generateEmployeeCard(data)}
       </main>
 
       <footer class="container text-center py-3">
-        <h3 class="text-dark">&copy;2020 by Team Generator 9000</h3>
+      <h3 class="text-light">&copy;2021 by Team Generator 9000</h3>
       </footer>
 
 
@@ -116,3 +114,6 @@ function generatePage(data) {
   
 
   module.exports = generatePage;
+
+
+
