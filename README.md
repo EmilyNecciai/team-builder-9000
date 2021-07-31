@@ -17,7 +17,7 @@ This application, the Team Builder 9000, allows HR professionals or managers to 
 
 
 ### Demo 
-[Go to Demo](https://drive.google.com/file/d/1GxgmyvCz0mGX910WDPOW9f3yLvNiBoUX/view?usp=sharing){:target="\_blank"}
+[Go to Demo](https://drive.google.com/file/d/1GxgmyvCz0mGX910WDPOW9f3yLvNiBoUX/view?usp=sharing) (Use `Ctrl + Click` to open the video in a new tab.)
 
 This demo first shows that the tests work `npm run tests`, then the walkthrough of how to enter information into the command line. Finally, it shows you the output of the information, as well as what the links look like when clicked through. 
 
